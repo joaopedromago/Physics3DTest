@@ -1,7 +1,13 @@
-[gd_scene load_steps=11 format=3 uid="uid://bavy4jvdy6dl1"]
+[gd_scene load_steps=36 format=3 uid="uid://bavy4jvdy6dl1"]
 
 [ext_resource type="Script" path="res://src/main/main.gd" id="1_5whny"]
 [ext_resource type="PackedScene" uid="uid://cgxq6eoi6xe5o" path="res://src/player/player.tscn" id="2_thk8f"]
+[ext_resource type="Texture2D" uid="uid://dnvchuthjh0hc" path="res://assets/textures/whispy-grass-meadow-bl/wispy-grass-meadow_albedo.png" id="2_u3gk2"]
+[ext_resource type="Texture2D" uid="uid://bv2iai4qor4oo" path="res://assets/textures/whispy-grass-meadow-bl/wispy-grass-meadow_ao.png" id="3_ltmi3"]
+[ext_resource type="Texture2D" uid="uid://b732w0owlqncl" path="res://assets/textures/whispy-grass-meadow-bl/wispy-grass-meadow_height.png" id="4_yq5t4"]
+[ext_resource type="Texture2D" uid="uid://dac1ota1oc3vy" path="res://assets/textures/whispy-grass-meadow-bl/wispy-grass-meadow_metallic.png" id="5_cbh3l"]
+[ext_resource type="Texture2D" uid="uid://bmy7v15q0mnb" path="res://assets/textures/whispy-grass-meadow-bl/wispy-grass-meadow_normal-ogl.png" id="6_kk7tp"]
+[ext_resource type="Texture2D" uid="uid://3ecwfmuh7njr" path="res://assets/textures/whispy-grass-meadow-bl/wispy-grass-meadow_roughness.png" id="7_2omrw"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wg2gd"]
 
@@ -16,6 +22,19 @@ ssr_enabled = true
 ssao_enabled = true
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt8gj"]
+albedo_texture = ExtResource("2_u3gk2")
+metallic = 1.0
+metallic_texture = ExtResource("5_cbh3l")
+roughness_texture = ExtResource("7_2omrw")
+normal_enabled = true
+normal_texture = ExtResource("6_kk7tp")
+ao_enabled = true
+ao_texture = ExtResource("3_ltmi3")
+heightmap_enabled = true
+heightmap_texture = ExtResource("4_yq5t4")
+uv1_scale = Vector3(0.3, 0.3, 0.3)
+uv1_triplanar = true
+uv1_triplanar_sharpness = 5.46416
 
 [sub_resource type="PlaneMesh" id="PlaneMesh_xyc28"]
 material = SubResource("StandardMaterial3D_lt8gj")
@@ -31,12 +50,77 @@ albedo_color = Color(0, 1, 1, 1)
 material = SubResource("StandardMaterial3D_ylqwi")
 size = Vector3(5, 5, 5)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_2u5tx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_7k82a"]
+material = SubResource("StandardMaterial3D_2u5tx")
+size = Vector3(0.5, 2, 5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_3tar1"]
+data = PackedVector3Array(-0.25, 1, 2.5, 0.25, 1, 2.5, -0.25, -1, 2.5, 0.25, 1, 2.5, 0.25, -1, 2.5, -0.25, -1, 2.5, 0.25, 1, -2.5, -0.25, 1, -2.5, 0.25, -1, -2.5, -0.25, 1, -2.5, -0.25, -1, -2.5, 0.25, -1, -2.5, 0.25, 1, 2.5, 0.25, 1, -2.5, 0.25, -1, 2.5, 0.25, 1, -2.5, 0.25, -1, -2.5, 0.25, -1, 2.5, -0.25, 1, -2.5, -0.25, 1, 2.5, -0.25, -1, -2.5, -0.25, 1, 2.5, -0.25, -1, 2.5, -0.25, -1, -2.5, 0.25, 1, 2.5, -0.25, 1, 2.5, 0.25, 1, -2.5, -0.25, 1, 2.5, -0.25, 1, -2.5, 0.25, 1, -2.5, -0.25, -1, 2.5, 0.25, -1, 2.5, -0.25, -1, -2.5, 0.25, -1, 2.5, 0.25, -1, -2.5, -0.25, -1, -2.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_nbv75"]
+data = PackedVector3Array(-0.25, 1, 2.5, 0.25, 1, 2.5, -0.25, -1, 2.5, 0.25, 1, 2.5, 0.25, -1, 2.5, -0.25, -1, 2.5, 0.25, 1, -2.5, -0.25, 1, -2.5, 0.25, -1, -2.5, -0.25, 1, -2.5, -0.25, -1, -2.5, 0.25, -1, -2.5, 0.25, 1, 2.5, 0.25, 1, -2.5, 0.25, -1, 2.5, 0.25, 1, -2.5, 0.25, -1, -2.5, 0.25, -1, 2.5, -0.25, 1, -2.5, -0.25, 1, 2.5, -0.25, -1, -2.5, -0.25, 1, 2.5, -0.25, -1, 2.5, -0.25, -1, -2.5, 0.25, 1, 2.5, -0.25, 1, 2.5, 0.25, 1, -2.5, -0.25, 1, 2.5, -0.25, 1, -2.5, 0.25, 1, -2.5, -0.25, -1, 2.5, 0.25, -1, 2.5, -0.25, -1, -2.5, 0.25, -1, 2.5, 0.25, -1, -2.5, -0.25, -1, -2.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_1bhtf"]
+data = PackedVector3Array(-0.25, 1, 2.5, 0.25, 1, 2.5, -0.25, -1, 2.5, 0.25, 1, 2.5, 0.25, -1, 2.5, -0.25, -1, 2.5, 0.25, 1, -2.5, -0.25, 1, -2.5, 0.25, -1, -2.5, -0.25, 1, -2.5, -0.25, -1, -2.5, 0.25, -1, -2.5, 0.25, 1, 2.5, 0.25, 1, -2.5, 0.25, -1, 2.5, 0.25, 1, -2.5, 0.25, -1, -2.5, 0.25, -1, 2.5, -0.25, 1, -2.5, -0.25, 1, 2.5, -0.25, -1, -2.5, -0.25, 1, 2.5, -0.25, -1, 2.5, -0.25, -1, -2.5, 0.25, 1, 2.5, -0.25, 1, 2.5, 0.25, 1, -2.5, -0.25, 1, 2.5, -0.25, 1, -2.5, 0.25, 1, -2.5, -0.25, -1, 2.5, 0.25, -1, 2.5, -0.25, -1, -2.5, 0.25, -1, 2.5, 0.25, -1, -2.5, -0.25, -1, -2.5)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_21ds8"]
+data = PackedVector3Array(-0.25, 1, 2.5, 0.25, 1, 2.5, -0.25, -1, 2.5, 0.25, 1, 2.5, 0.25, -1, 2.5, -0.25, -1, 2.5, 0.25, 1, -2.5, -0.25, 1, -2.5, 0.25, -1, -2.5, -0.25, 1, -2.5, -0.25, -1, -2.5, 0.25, -1, -2.5, 0.25, 1, 2.5, 0.25, 1, -2.5, 0.25, -1, 2.5, 0.25, 1, -2.5, 0.25, -1, -2.5, 0.25, -1, 2.5, -0.25, 1, -2.5, -0.25, 1, 2.5, -0.25, -1, -2.5, -0.25, 1, 2.5, -0.25, -1, 2.5, -0.25, -1, -2.5, 0.25, 1, 2.5, -0.25, 1, 2.5, 0.25, 1, -2.5, -0.25, 1, 2.5, -0.25, 1, -2.5, 0.25, 1, -2.5, -0.25, -1, 2.5, 0.25, -1, 2.5, -0.25, -1, -2.5, 0.25, -1, 2.5, 0.25, -1, -2.5, -0.25, -1, -2.5)
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_ig7fa"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_dfnga"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0gb0j"]
+albedo_color = Color(1, 0, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_bcgh4"]
+material = SubResource("StandardMaterial3D_0gb0j")
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_l1c8l"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fk6s1"]
+albedo_color = Color(1, 0, 0, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_q3fcm"]
+material = SubResource("StandardMaterial3D_fk6s1")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1pivh"]
+albedo_color = Color(0, 0, 0, 1)
+metallic_specular = 0.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_kx5qr"]
+material = SubResource("StandardMaterial3D_1pivh")
+top_radius = 2.0
+bottom_radius = 2.0
+height = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_cjpjx"]
+height = 1.0
+radius = 2.0
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_lfilq"]
+material = SubResource("StandardMaterial3D_1pivh")
+top_radius = 75.0
+bottom_radius = 75.0
+height = 0.05
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_qt7hf"]
+height = 0.01
+radius = 75.0
+
+[sub_resource type="CylinderShape3D" id="CylinderShape3D_1tf8j"]
+height = 1.0
+radius = 2.0
+
 [node name="Main" type="Node3D"]
 script = ExtResource("1_5whny")
 
 [node name="Sun" type="DirectionalLight3D" parent="."]
 transform = Transform3D(0.602693, 0.797973, 4.2278e-08, -0.498481, 0.376493, 0.780878, 0.623119, -0.470629, 0.624684, -0.44352, 109.403, -132.095)
 shadow_enabled = true
+shadow_blur = 0.5
 
 [node name="World" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_ylyk3")
@@ -54,6 +138,66 @@ shape = SubResource("ConcavePolygonShape3D_70gq2")
 [node name="Square" type="MeshInstance3D" parent="Objects"]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.17984, -28.4766)
 mesh = SubResource("BoxMesh_acapp")
+
+[node name="Wall" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.5, 1, 10)
+mesh = SubResource("BoxMesh_7k82a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Wall"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_3tar1")
+
+[node name="Wall2" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.5, 1, 10)
+mesh = SubResource("BoxMesh_7k82a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Wall2"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall2/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_nbv75")
+
+[node name="Wall3" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 12.5)
+mesh = SubResource("BoxMesh_7k82a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Wall3"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall3/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_1bhtf")
+
+[node name="Wall4" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(-4.37114e-08, 0, 1, 0, 1, 0, -1, 0, -4.37114e-08, 0, 1, 7.5)
+mesh = SubResource("BoxMesh_7k82a")
+
+[node name="StaticBody3D" type="StaticBody3D" parent="Objects/Wall4"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Objects/Wall4/StaticBody3D"]
+shape = SubResource("ConcavePolygonShape3D_21ds8")
+
+[node name="PhysicsObjects" type="Node3D" parent="."]
+
+[node name="Box" type="RigidBody3D" parent="PhysicsObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 3.40965, -3.36173)
+physics_material_override = SubResource("PhysicsMaterial_ig7fa")
+inertia = Vector3(120, 120, 120)
+
+[node name="Box" type="CollisionShape3D" parent="PhysicsObjects/Box"]
+shape = SubResource("BoxShape3D_dfnga")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PhysicsObjects/Box"]
+mesh = SubResource("BoxMesh_bcgh4")
+
+[node name="Ball" type="RigidBody3D" parent="PhysicsObjects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4.3951, 3.40965, -6.17447)
+physics_material_override = SubResource("PhysicsMaterial_ig7fa")
+inertia = Vector3(120, 120, 120)
+
+[node name="Shape" type="CollisionShape3D" parent="PhysicsObjects/Ball"]
+shape = SubResource("SphereShape3D_l1c8l")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="PhysicsObjects/Ball"]
+mesh = SubResource("SphereMesh_q3fcm")
 
 [node name="Player" parent="." instance=ExtResource("2_thk8f")]
 
@@ -76,3 +220,61 @@ offset_left = 1864.0
 offset_top = 16.0
 offset_right = 1904.0
 offset_bottom = 39.0
+
+[node name="MiscInfo" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 1800.0
+offset_top = 48.0
+offset_right = 1840.0
+offset_bottom = 71.0
+
+[node name="BlackHole" type="Node3D" parent="."]
+
+[node name="Static" type="Area3D" parent="BlackHole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlackHole/Static"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185618, 0)
+mesh = SubResource("CylinderMesh_kx5qr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlackHole/Static"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185618, 0)
+shape = SubResource("CylinderShape3D_cjpjx")
+
+[node name="Giant" type="Area3D" parent="BlackHole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -7.55662, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlackHole/Giant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185618, 0)
+mesh = SubResource("CylinderMesh_lfilq")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlackHole/Giant"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185618, 0)
+shape = SubResource("CylinderShape3D_qt7hf")
+
+[node name="Moving" type="Area3D" parent="BlackHole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 10)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlackHole/Moving"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185618, 0)
+mesh = SubResource("CylinderMesh_kx5qr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlackHole/Moving"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185618, 0)
+shape = SubResource("CylinderShape3D_1tf8j")
+
+[node name="Chasing" type="Area3D" parent="BlackHole"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 7, 0, 0)
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="BlackHole/Chasing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185618, 0)
+mesh = SubResource("CylinderMesh_kx5qr")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="BlackHole/Chasing"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.0185618, 0)
+shape = SubResource("CylinderShape3D_1tf8j")
+
+[connection signal="body_entered" from="BlackHole/Static" to="." method="_on_black_holed"]
+[connection signal="body_entered" from="BlackHole/Giant" to="." method="_on_black_holed"]
+[connection signal="body_entered" from="BlackHole/Moving" to="." method="_on_black_holed"]
+[connection signal="body_entered" from="BlackHole/Chasing" to="." method="_on_black_holed"]

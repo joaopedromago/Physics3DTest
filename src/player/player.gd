@@ -29,20 +29,26 @@ func _ready():
 	movement_service = MovementService.new(self, body, status_service, twist_pivot, pitch_pivot)
 	camera_service = CameraService.new(self, twist_pivot, pitch_pivot, camera_anti_collider)
 
-func _process(delta):
+func _process(delta: float):
 	camera_service.process(delta)
 
-func _physics_process(delta):
+func _physics_process(delta: float):
 	_handle_gravity(delta)
 	movement_service.process(delta)
 	animation_service.process(delta)
+	var collision = move_and_collide(velocity * delta, false, 0.001, true)
+	if collision:
+		_handle_collision(collision)
 	move_and_slide()
 
 
-func _handle_gravity(delta):
+func _handle_gravity(delta: float):
 	if not is_on_floor():
 		velocity.y -= Application.gravity * delta
 
+func _handle_collision(collision: KinematicCollision3D):
+	if collision.get_collider().get_class() == "RigidBody3D":
+		collision.get_collider().apply_impulse(Vector3(velocity))
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion:
