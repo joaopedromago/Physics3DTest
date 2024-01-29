@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://bavy4jvdy6dl1"]
+
+[ext_resource type="Script" path="res://src/main/main.gd" id="1_5whny"]
+[ext_resource type="PackedScene" uid="uid://cgxq6eoi6xe5o" path="res://src/player/player.tscn" id="2_thk8f"]
+
+[sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_wg2gd"]
+
+[sub_resource type="Sky" id="Sky_745mf"]
+sky_material = SubResource("ProceduralSkyMaterial_wg2gd")
+
+[sub_resource type="Environment" id="Environment_ylyk3"]
+background_mode = 2
+sky = SubResource("Sky_745mf")
+ambient_light_source = 3
+ssr_enabled = true
+ssao_enabled = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lt8gj"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_xyc28"]
+material = SubResource("StandardMaterial3D_lt8gj")
+size = Vector2(100, 100)
+
+[sub_resource type="ConcavePolygonShape3D" id="ConcavePolygonShape3D_70gq2"]
+data = PackedVector3Array(50, 0, 50, -50, 0, 50, 50, 0, -50, -50, 0, 50, -50, 0, -50, 50, 0, -50)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ylqwi"]
+albedo_color = Color(0, 1, 1, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_acapp"]
+material = SubResource("StandardMaterial3D_ylqwi")
+size = Vector3(5, 5, 5)
+
+[node name="Main" type="Node3D"]
+script = ExtResource("1_5whny")
+
+[node name="Sun" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.602693, 0.797973, 4.2278e-08, -0.498481, 0.376493, 0.780878, 0.623119, -0.470629, 0.624684, -0.44352, 109.403, -132.095)
+shadow_enabled = true
+
+[node name="World" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_ylyk3")
+
+[node name="Floor" type="MeshInstance3D" parent="."]
+mesh = SubResource("PlaneMesh_xyc28")
+
+[node name="Floor" type="StaticBody3D" parent="Floor"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor/Floor"]
+shape = SubResource("ConcavePolygonShape3D_70gq2")
+
+[node name="Objects" type="Node3D" parent="."]
+
+[node name="Square" type="MeshInstance3D" parent="Objects"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 6.17984, -28.4766)
+mesh = SubResource("BoxMesh_acapp")
+
+[node name="Player" parent="." instance=ExtResource("2_thk8f")]
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="PlayerState" type="Label" parent="Control"]
+layout_mode = 0
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 56.0
+offset_bottom = 39.0
+
+[node name="FpsInfo" type="Label" parent="Control"]
+offset_left = 1864.0
+offset_top = 16.0
+offset_right = 1904.0
+offset_bottom = 39.0
