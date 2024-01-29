@@ -4,17 +4,20 @@ var CameraService = preload("res://src/player/services/camera.gd")
 var MovementService = preload("res://src/player/services/movement.gd")
 var AnimationService = preload("res://src/player/services/animation.gd")
 var StatusService = preload("res://src/player/services/status.gd")
+var SkillsService = preload("res://src/player/services/skills.gd")
 
 var camera_service: CameraService
 var movement_service: MovementService
 var animation_service: AnimationService
 var status_service: StatusService
+var skills_service: SkillsService
 
 @onready var twist_pivot := $TwistPivot
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var camera_anti_collider := $TwistPivot/PitchPivot/AntiCollider
 @onready var animation_player := $Body/Mesh/AnimationPlayer
 @onready var body := $Body
+@onready var reticle := $Interface/Reticle
 
 const PlayerState = preload("res://src/enums/player_state.gd")
 
@@ -28,9 +31,11 @@ func _ready():
 	animation_service = AnimationService.new(self, animation_player)
 	movement_service = MovementService.new(self, body, status_service, twist_pivot, pitch_pivot)
 	camera_service = CameraService.new(self, twist_pivot, pitch_pivot, camera_anti_collider)
+	skills_service = SkillsService.new(self, reticle)
 
 func _process(delta: float):
 	camera_service.process(delta)
+	skills_service.process(delta)
 
 func _physics_process(delta: float):
 	_handle_gravity(delta)
