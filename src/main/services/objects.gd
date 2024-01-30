@@ -32,7 +32,7 @@ func _create_multi_mesh_instance():
 	
 
 func _generate_physics_objects(delta):
-	if  time > objects_generated:
+	if  time != objects_generated:
 		objects_generated += 1
 		var object = RigidBody3D.new()
 		var physics = PhysicsMaterial.new()

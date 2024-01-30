@@ -68,3 +68,5 @@ width = 2.0
 [node name="Left" type="Line2D" parent="Interface/Reticle"]
 points = PackedVector2Array(-5, 0, -15, 0)
 width = 2.0
+
+[connection signal="rigid_body_hit" from="." to="." method="_on_rigid_body_hit"]

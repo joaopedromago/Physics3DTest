@@ -24,6 +24,7 @@ const PlayerState = preload("res://src/enums/player_state.gd")
 var state := PlayerState.Idle
 var action_direction: Vector3
 
+signal rigid_body_hit(object: RigidBody3D)
 
 func _ready():
 	action_direction = rotation
@@ -31,7 +32,7 @@ func _ready():
 	animation_service = AnimationService.new(self, animation_player)
 	movement_service = MovementService.new(self, body, status_service, twist_pivot, pitch_pivot)
 	camera_service = CameraService.new(self, twist_pivot, pitch_pivot, camera_anti_collider)
-	skills_service = SkillsService.new(self, reticle)
+	skills_service = SkillsService.new(self, reticle, twist_pivot, pitch_pivot)
 
 func _process(delta: float):
 	camera_service.process(delta)
@@ -58,3 +59,8 @@ func _handle_collision(collision: KinematicCollision3D):
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion:
 		camera_service.handle_camera_input(event)
+
+
+func _on_rigid_body_hit(object: RigidBody3D):
+	if !skills_service.moving_object:
+		skills_service.moving_object = object
