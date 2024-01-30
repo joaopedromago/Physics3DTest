@@ -13,7 +13,7 @@ func _ready():
 func _process(delta):
 	time += delta
 	position += transform.basis * Vector3(0,0,-Application.BULLET_SPEED) * delta
-	if ray.is_colliding() and ray.get_collider() and ray.get_collider().get_class() == "RigidBody3D":
+	if ray.is_colliding() and ray.get_collider() and ray.get_collider() is RigidBody3D:
 		get_parent().emit_signal("rigid_body_hit", ray.get_collider())
 		mesh.visible = false
 		particles.emitting = true

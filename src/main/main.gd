@@ -40,5 +40,5 @@ func _process(delta):
 
 
 func _on_black_holed(body):
-	if body.get_class() == "RigidBody3D":
+	if body is RigidBody3D:
 		body.queue_free()

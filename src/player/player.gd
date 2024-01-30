@@ -42,19 +42,20 @@ func _physics_process(delta: float):
 	_handle_gravity(delta)
 	movement_service.process(delta)
 	animation_service.process(delta)
-	var collision = move_and_collide(velocity * delta, false, 0.001, true)
-	if collision:
-		_handle_collision(collision)
 	move_and_slide()
+	_handle_collision(delta)
 
 
 func _handle_gravity(delta: float):
 	if not is_on_floor():
 		velocity.y -= Application.gravity * delta
 
-func _handle_collision(collision: KinematicCollision3D):
-	if collision.get_collider().get_class() == "RigidBody3D":
-		collision.get_collider().apply_impulse(Vector3(velocity))
+func _handle_collision(delta: float):
+	for col_idx in get_slide_collision_count():
+		var collision := get_slide_collision(col_idx)
+		if collision and collision.get_collider() is RigidBody3D:
+			collision.get_collider().apply_impulse(-collision.get_normal() * 100 * delta, collision.get_position() - collision.get_collider().global_position)
+
 
 func _unhandled_input(event: InputEvent):
 	if event is InputEventMouseMotion:

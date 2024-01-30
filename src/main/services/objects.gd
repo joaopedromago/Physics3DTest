@@ -43,15 +43,33 @@ func _generate_physics_objects(delta):
 		
 		var shape = CollisionShape3D.new()
 		
-		var sphere_shape = SphereShape3D.new()
-		shape.shape = sphere_shape
-		
 		var mesh = MeshInstance3D.new()
-		var sphere_mesh = SphereMesh.new()
 		var material = StandardMaterial3D.new()
+		var random_polygon = int(round(rng.randf_range(0,4)))
+		var polygon_mesh
+		var polygon_shape
+		
+		match random_polygon:
+			0:
+				polygon_mesh = PrismMesh.new()
+				polygon_shape = BoxShape3D.new()
+			1:
+				polygon_mesh = CylinderMesh.new()
+				polygon_shape = CylinderShape3D.new()
+			2:
+				polygon_mesh = BoxMesh.new()
+				polygon_shape = BoxShape3D.new()
+			3:
+				polygon_mesh = CapsuleMesh.new()
+				polygon_shape = CapsuleShape3D.new()
+			_:
+				polygon_mesh = SphereMesh.new()
+				polygon_shape = SphereShape3D.new()
+		
 		material.albedo_color = _generate_random_rgb()
-		sphere_mesh.material = material
-		mesh.mesh = sphere_mesh
+		polygon_mesh.material = material
+		mesh.mesh = polygon_mesh
+		shape.shape = polygon_shape
 		
 		object.add_child(shape)
 		object.add_child(mesh)
