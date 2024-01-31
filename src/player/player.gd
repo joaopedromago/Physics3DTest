@@ -18,6 +18,7 @@ var skills_service: SkillsService
 @onready var animation_player := $Body/Mesh/AnimationPlayer
 @onready var body := $Body
 @onready var reticle := $Interface/Reticle
+@onready var camera_arm := $TwistPivot/PitchPivot/AntiCollider
 
 const PlayerState = preload("res://src/enums/player_state.gd")
 
@@ -32,7 +33,7 @@ func _ready():
 	animation_service = AnimationService.new(self, animation_player)
 	movement_service = MovementService.new(self, body, status_service, twist_pivot, pitch_pivot)
 	camera_service = CameraService.new(self, twist_pivot, pitch_pivot, camera_anti_collider)
-	skills_service = SkillsService.new(self, reticle, twist_pivot, pitch_pivot)
+	skills_service = SkillsService.new(self, reticle, twist_pivot, pitch_pivot,camera_arm)
 
 func _process(delta: float):
 	camera_service.process(delta)
