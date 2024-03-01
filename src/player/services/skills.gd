@@ -52,8 +52,9 @@ func _handle_reverse_gravity():
 
 func _shoot():
 	var instance = projectile.instantiate()
-	instance.position = Vector3(twist_pivot.position.x, twist_pivot.position.y, twist_pivot.position.z)
-	instance.rotation = Vector3(pitch_pivot.rotation.x,twist_pivot.rotation.y,0)
+	instance.position = Vector3(0, 2, 0)
+	#instance.rotation = Vector3(pitch_pivot.rotation.x,twist_pivot.rotation.y,0)
+	instance.rotation = Vector3(pitch_pivot.rotation.x,twist_pivot.rotation.y - player.rotation.y,0)
 	player.add_child(instance)
 
 func _drop_object():

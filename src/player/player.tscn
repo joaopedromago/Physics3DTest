@@ -19,6 +19,7 @@ transform = Transform3D(-0.011, 0, -9.61651e-10, 0, 0.011, 0, 9.61651e-10, 0, -0
 
 [node name="TwistPivot" type="Node3D" parent="."]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2, 0)
+top_level = true
 
 [node name="PitchPivot" type="Node3D" parent="TwistPivot"]
 transform = Transform3D(1, 0, 0, 0, 0.984808, 0.173648, 0, -0.173648, 0.984808, 0, 0, 0)

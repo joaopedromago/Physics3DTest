@@ -16,7 +16,6 @@ var skills_service: SkillsService
 @onready var pitch_pivot := $TwistPivot/PitchPivot
 @onready var camera_anti_collider := $TwistPivot/PitchPivot/AntiCollider
 @onready var animation_player := $Body/Mesh/AnimationPlayer
-@onready var body := $Body
 @onready var reticle := $Interface/Reticle
 @onready var camera_arm := $TwistPivot/PitchPivot/AntiCollider
 
@@ -31,13 +30,14 @@ func _ready():
 	action_direction = rotation
 	status_service = StatusService.new(self)
 	animation_service = AnimationService.new(self, animation_player)
-	movement_service = MovementService.new(self, body, status_service, twist_pivot, pitch_pivot)
+	movement_service = MovementService.new(self, status_service, twist_pivot, pitch_pivot)
 	camera_service = CameraService.new(self, twist_pivot, pitch_pivot, camera_anti_collider)
 	skills_service = SkillsService.new(self, reticle, twist_pivot, pitch_pivot,camera_arm)
 
 func _process(delta: float):
 	camera_service.process(delta)
 	skills_service.process(delta)
+	twist_pivot.position = Vector3(self.position.x, self.position.y + 2, self.position.z)
 
 func _physics_process(delta: float):
 	_handle_gravity(delta)

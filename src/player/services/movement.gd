@@ -8,18 +8,15 @@ var player: CharacterBody3D
 var status_service: StatusService
 var twist_pivot: Node3D
 var pitch_pivot: Node3D
-var player_body: CollisionShape3D
 
 
 func _init(
 	player_arg: CharacterBody3D,
-	player_body_arg: CollisionShape3D,
 	status_service_arg: StatusService,
 	twist_pivot_arg: Node3D,
 	pitch_pivot_arg: Node3D
 ):
 	player = player_arg
-	player_body = player_body_arg
 	status_service = status_service_arg
 	twist_pivot = twist_pivot_arg
 	pitch_pivot = pitch_pivot_arg
@@ -64,9 +61,9 @@ func _face_direction(direction: Vector3):
 	var direction_z = direction.z * player.action_direction.y * -1
 
 	if player.action_direction.y > 0:
-		player_body.rotation.y = atan2(direction_x, direction_z) + player.action_direction.y
+		player.rotation.y = atan2(direction_x, direction_z) + player.action_direction.y
 	elif player.action_direction.y == 0:
-		player_body.rotation.y = atan2(direction.x * -1, direction.z * -1)
+		player.rotation.y = atan2(direction.x * -1, direction.z * -1)
 	else:
 		var normalized_direction = player.action_direction.y - deg_to_rad(180)
-		player_body.rotation.y = atan2(direction_x, direction_z) + normalized_direction
+		player.rotation.y = atan2(direction_x, direction_z) + normalized_direction
